@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bilder hochladen</title>
+</head>
+<body>
+    <h1>Bild hochladen</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="titel">Label:</label>
+        <input type="text" id="titel" name="titel"><br>
+        <label for="image">Bild:</label>
+        <input type="file" id="image" name="image"><br>
+        <input type="submit" value="Hochladen">
+    </form>
+</body>
+</html>

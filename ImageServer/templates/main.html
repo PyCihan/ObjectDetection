@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load static%}
+
+<html>
+<head>
+    <title>Second Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <!--Style für Navileiste-->
+    <title>Meine Navigationsleiste</title>
+    <style>
+        /* Stil für die Navigationsleiste */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
+
+    <!--Style für Modalfenster-->
+    <title>Zentral angeordnetes Pop-up-Fenster mit eingebettetem <iframe></title>
+        <style>
+            /* Stil für das Overlay */
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Halbtransparentes Overlay */
+                z-index: 1;
+            }
+    
+            /* Stil für das Pop-up-Fenster */
+            .popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                z-index: 2;
+            }
+    
+            /* Stil für das eingebettete <iframe> */
+            .iframe-container {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; /* 16:9 Seitenverhältnis (Höhe / Breite) */
+            }
+    
+            .iframe-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+
+</head>
+<body>
+        <!-- Navigationsleiste -->
+     <ul>
+            <li><a href="#" >Bilder</a></li>
+            <li><a href="http://127.0.0.1:8000/image_save/">Upload</a></li>
+            <li>
+                <form id="search-form" action="/results/" method="GET">
+                    <input type="text" id="search-input" name="keyword" placeholder="Suchen...">
+                    <button type="submit" id="search-button">Suchen</button>
+                </form>
+            </li>
+    </ul>
+    <!-- ImageÜersicht -->
+    <h1>Image Collection</h1>
+    <br>
+    <div class="container">
+        {% for image in images%}
+        <div class="item">
+            <img src="{{image.image.url}}" class="item">
+            <p>{{image.label}}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modalfenster -->
+    <!-- Link zum Öffnen des Pop-up-Fensters onclick="showModal()" 
+    <a href="#" onclick="showPopup()">Öffne Pop-up</a>
+
+    <!-- Overlay und Pop-up-Fenster 
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2>Neue Webadresse</h2>
+        <div class="iframe-container">
+            <iframe src="http://127.0.0.1:8000/bild_hochladen/"></iframe>
+        </div>
+        <button onclick="closePopup()">Schließen</button>
+    </div>
+
+    <!-- JavaScript zum Steuern des Pop-up-Fensters -->
+    <script>
+        function showPopup() {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+        
+</body>
+</html>
+
